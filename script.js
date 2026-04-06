@@ -20,7 +20,7 @@ skillForm.addEventListener("submit", function (e) {
   newCard.innerHTML = `
     <h3 class="text-[#d4af37] font-bold text-xl mb-1">${nameValue}</h3>
     <p class="text-gray-400 mb-4">${skillValue}</p>
-    <button class="remove-btn text-xs text-red-500 hover:text-red-300  font-bold">
+    <button class="remove-btn  bg-black hover:bg-[#d4af37] text-white py-2.5 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 active:scale-[0.98]text-xs text-red-500 hover:text-red-300  font-bold">
       Remove
     </button>
   `;
