@@ -146,6 +146,11 @@ h1 {
   color: var(--accent);
 }
 
+.filter-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 /* === GOAL LIST === */
 #goal-list {
   list-style: none;
