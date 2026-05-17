@@ -1,0 +1,229 @@
+/* === THEME VARIABLES === */
+body {
+  --bg: #0d0d0d;
+  --bg-surface: #1a1a1a;
+  --bg-card: #1a1a1a;
+  --text: #f5f5f5;
+  --text-muted: #888;
+  --text-faint: #555;
+  --border: #333;
+  --accent: #d4af37;
+  --accent-dark: #b8962e;
+  --accent-contrast: #0d0d0d;
+  --danger: #c0392b;
+  --input-text: #fff;
+}
+
+body.dark-mode {
+  --bg: #F5F5F0;
+  --bg-surface: #E8E8E3;
+  --bg-card: #FFFFFF;
+  --text: #0D0D0D;
+  --text-muted: #555;
+  --text-faint: #aaa;
+  --border: #ccc;
+  --accent: #b8962e;
+  --accent-dark: #8a6d1a;
+  --accent-contrast: #fff;
+  --input-text: #0d0d0d;
+}
+
+/* === BASE === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", sans-serif;
+  width: 100%;
+  padding: 2rem;
+  transition: background 0.3s, color 0.3s; /* smooth toggle */
+}
+
+/* === HEADER === */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  color: var(--accent);
+  font-size: 1.8rem;
+}
+
+#progress-counter {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#theme-toggle,
+#export-btn {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+#theme-toggle:hover,
+#export-btn:hover {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+/* === FORM === */
+#goal-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+#goal-input,
+#priority,
+#date {
+  flex: 1;
+  background: var(--bg-surface);
+  border: 1px solid var(--accent);
+  color: var(--input-text);
+  padding: 0.7rem 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  min-width: 120px;
+}
+
+#add-btn {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+#add-btn:hover {
+  background: var(--accent-dark);
+}
+
+/* === FILTERS === */
+#filter-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.filter-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* === GOAL LIST === */
+#goal-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.goal-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.goal-item.done .goal-text {
+  text-decoration: line-through;
+  color: var(--text-faint);
+}
+
+.goal-text {
+  flex: 1;
+  color: var(--text);
+}
+
+/* === PRIORITY BADGES === */
+.priority-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border: 1px solid;
+}
+
+.priority-badge.High  { color: #e74c3c; border-color: #e74c3c; }
+.priority-badge.Medium { color: var(--accent); border-color: var(--accent); }
+.priority-badge.Low   { color: #2ecc71; border-color: #2ecc71; }
+
+/* === BUTTONS === */
+.complete-btn {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.complete-btn:hover {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.delete-btn {
+  background: transparent;
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.delete-btn:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+.goal-item.overdue {
+  border-color: #e74c3c;
+  background: rgba(231, 76, 60, 0.08);
+}
