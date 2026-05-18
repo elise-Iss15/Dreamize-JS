@@ -5,6 +5,7 @@ const userRoutes = require("./routes/userRoutes");
 const studentRoutes = require("./routes/studentRoutes");
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const connectDB = require("./config/db");
 
 dotenv.config();
 
@@ -19,11 +20,14 @@ const swaggerOptions = {
       version: "1.0.0",
       description: "A simple Student Management API",
     },
-
-    Servers: {
-      url: "http://localhost:${PORT}",
-    },
-
+    servers: [
+      {
+        url:
+          process.env.NODE_ENV === "production"
+            ? "https://dreamize-js-1.onrender.com"
+            : `http://localhost:${PORT}`,
+      },
+    ],
     components: {
       securitySchemes: {
         bearerAuth: {
@@ -43,15 +47,12 @@ const swaggerOptions = {
 };
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use(express.json());
-
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use("/api/users", userRoutes);
 app.use("/api", studentRoutes);
 
-const connectDB = require("./config/db");
-const { ServerSession } = require("mongodb");
 connectDB();
 
 app.listen(PORT, () => {
