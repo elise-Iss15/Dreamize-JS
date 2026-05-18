@@ -2,13 +2,12 @@ const express = require("express");
 const router = express.Router();
 
 const {
-
   register,
   login,
   getAllUsers,
   createStudent,
   updateStudent,
-  deleteStudent
+  deleteStudent,
 } = require("../controllers/studentController");
 
 const { protect } = require("../middleware/protect");
@@ -16,8 +15,6 @@ const { protect } = require("../middleware/protect");
 /**
  * @swagger
  * tags:
- *   - name: Students
- *     description: Student profile and data management
  *   - name: Auth
  *     description: Student registration and login
  *   - name: Students
@@ -33,8 +30,6 @@ const { protect } = require("../middleware/protect");
  *       scheme: bearer
  *       bearerFormat: JWT
  *       description: Enter your JWT token to access protected routes.
- *   schemas:
- *     Student:
  *   schemas:
  *     StudentRegister:
  *       type: object
@@ -227,6 +222,7 @@ router.post("/auth/register", register);
  *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post("/auth/login", login);
+
 /**
  * @swagger
  * /api/students:
@@ -250,6 +246,7 @@ router.get("/students", getAllUsers);
 // --- PROTECTED ROUTES ---
 // The protect middleware ensures a valid token is provided for all routes below
 router.use(protect);
+
 /**
  * @swagger
  * /api/students:
@@ -380,6 +377,7 @@ router.patch("/students/:id", updateStudent);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ */
 router.delete("/students/:id", deleteStudent);
 
 module.exports = router;
