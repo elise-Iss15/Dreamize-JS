@@ -1,12 +1,10 @@
 const express = require("express");
 const router = express.Router();
-
 const {
   register,
   login,
   getAllUsers,
 } = require("../controllers/authController");
-
 
 /**
  * @swagger
@@ -120,11 +118,6 @@ router.post("/login", login);
  *       500:
  *         description: Server error
  */
-const express = require("express");
-const router = express.Router();
-
-router.post("/register", register);
-router.post("/login", login);
 router.get("/users", getAllUsers);
 
 module.exports = router;
