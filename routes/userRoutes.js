@@ -1,10 +1,14 @@
+<<<<<<< HEAD
 const express = require("express");
 const router = express.Router();
+=======
+>>>>>>> origin/main
 const {
   register,
   login,
   getAllUsers,
 } = require("../controllers/authController");
+<<<<<<< HEAD
 
 /**
  * @swagger
@@ -118,6 +122,13 @@ router.post("/login", login);
  *       500:
  *         description: Server error
  */
+=======
+const express = require("express");
+const router = express.Router();
+
+router.post("/register", register);
+router.post("/login", login);
+>>>>>>> origin/main
 router.get("/users", getAllUsers);
 
 module.exports = router;
