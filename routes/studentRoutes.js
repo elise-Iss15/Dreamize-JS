@@ -24,6 +24,12 @@ const { protect } = require("../middleware/protect");
 /**
  * @swagger
  * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ *       description: Enter your JWT token to access protected routes.
  *   schemas:
  *     StudentRegister:
  *       type: object
@@ -216,6 +222,7 @@ router.post("/auth/register", register);
  *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post("/auth/login", login);
+
 /**
  * @swagger
  * /api/students:
@@ -233,13 +240,13 @@ router.post("/auth/login", login);
  *                 $ref: '#/components/schemas/Student'
  *       500:
  *         description: Server error
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.get("/students", getAllUsers);
+
+// --- PROTECTED ROUTES ---
+// The protect middleware ensures a valid token is provided for all routes below
 router.use(protect);
+
 /**
  * @swagger
  * /api/students:
@@ -253,7 +260,6 @@ router.use(protect);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/StudentRegister'
  *     responses:
  *       201:
  *         description: Student created successfully
@@ -293,13 +299,11 @@ router.post("/students", createStudent);
  *         schema:
  *           type: string
  *         description: The student ID
- *         example: 64a1f2c3e4b5d6f7a8b9c0d1
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/StudentUpdate'
  *     responses:
  *       200:
  *         description: Student updated successfully
@@ -345,7 +349,6 @@ router.patch("/students/:id", updateStudent);
  *         schema:
  *           type: string
  *         description: The student ID
- *         example: 64a1f2c3e4b5d6f7a8b9c0d1
  *     responses:
  *       200:
  *         description: Student deleted successfully
