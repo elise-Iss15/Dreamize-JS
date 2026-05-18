@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cohort Goals Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Cohort Goals Tracker</h1>
+      <div class="header-actions">
+        <button id="theme-toggle">🌙 DarkMode</button>
+        <button id="export-btn">⬇Export JSON</button>
+      </div>
+    </header>
+
+    <main>
+      <p id="progress-counter">0 of 0 goals completed</p>
+
+      <form id="goal-form">
+        <input
+          type="text"
+          id="goal-input"
+          placeholder="Goal description..."
+          required
+        />
+
+        <select id="priority" name="priority">
+          <option value="High">High</option>
+          <option value="Medium" selected>Medium</option>
+          <option value="Low">Low</option>
+        </select>
+
+        <input type="date" id="date" />
+
+        <button id="add-btn" type="submit">+ Add Goal</button>
+      </form>
+
+      <div id="filter-buttons">
+        <button type="button" class="filter-btn" data-filter="all">All</button>
+        <button type="button" class="filter-btn" data-filter="active">
+          Active
+        </button>
+        <button type="button" class="filter-btn" data-filter="completed">
+          Completed
+        </button>
+      </div>
+
+      <ul id="goal-list"></ul>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
